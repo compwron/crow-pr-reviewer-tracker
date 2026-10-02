@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="shared.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <button id="open" class="primary" disabled>Open PRs</button>
+      <span id="count" class="muted"></span>
+      <button id="clear" class="link" hidden>Clear</button>
+    </header>
+
+    <section class="toggles">
+      <label><input type="checkbox" id="includeDrafts" /> Include drafts</label>
+      <label id="limitToOrgLabel"><input type="checkbox" id="limitToOrg" /> Only <span id="orgName"></span> repos</label>
+    </section>
+
+    <input type="text" id="filter" placeholder="Filter, or type a username and press Enter" autocomplete="off" />
+
+    <ul id="list"></ul>
+
+    <footer>
+      <span id="status" class="muted"></span>
+      <span class="actions">
+        <button id="refresh" class="link">Refresh</button>
+        <button id="options" class="link">Options</button>
+      </span>
+    </footer>
+
+    <script src="lib.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

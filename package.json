@@ -1,0 +1,26 @@
+{
+  "name": "crow-pr-reviewer-tracker",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Firefox add-on: pick people from your GitHub org and open a search of their open PRs.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "web-ext run",
+    "test": "jest",
+    "lint": "web-ext lint"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setup.js"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^30.5.2",
+    "jsdom": "^26.1.0",
+    "web-ext": "^10.7.0"
+  }
+}

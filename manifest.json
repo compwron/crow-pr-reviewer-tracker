@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Crow PR Reviewer Tracker",
+  "version": "0.2.0",
+  "description": "Pick GitHub users from your org and open a search of their open PRs.",
+  "permissions": ["storage", "alarms"],
+  "host_permissions": ["https://api.github.com/*", "https://github.com/*"],
+  "background": {
+    "scripts": ["lib.js", "background.js"]
+  },
+  "action": {
+    "default_title": "Crow PR Reviewer Tracker",
+    "default_popup": "popup.html",
+    "default_icon": "icon.svg"
+  },
+  "icons": {
+    "48": "icon.svg",
+    "96": "icon.svg"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "crow-pr-reviewer-tracker@crow",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
+}
