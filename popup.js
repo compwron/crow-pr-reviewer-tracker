@@ -1,5 +1,6 @@
 const els = {
   open: document.getElementById("open"),
+  random: document.getElementById("random"),
   count: document.getElementById("count"),
   clear: document.getElementById("clear"),
   includeDrafts: document.getElementById("includeDrafts"),
@@ -11,6 +12,8 @@ const els = {
   refresh: document.getElementById("refresh"),
   options: document.getElementById("options"),
 };
+
+const RANDOM_COUNT = 3;
 
 let state = null;
 let refreshing = false;
@@ -34,6 +37,7 @@ function render() {
 function renderHeader() {
   const n = state.selected.length;
   els.open.disabled = n === 0;
+  els.random.disabled = randomCandidates().length === 0;
   els.count.textContent = n ? `${n} selected` : "Pick people below";
   els.clear.hidden = n === 0;
 }
@@ -147,6 +151,23 @@ async function openPrs(selected) {
 }
 
 els.open.addEventListener("click", () => openPrs(state.selected));
+
+function randomCandidates() {
+  const selected = new Set(state.selected);
+  return state.members.filter((login) => !selected.has(login));
+}
+
+// Fisher-Yates on a copy, so the picks are unbiased and the list order is untouched
+function sample(items, n) {
+  const pool = [...items];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, n);
+}
+
+els.random.addEventListener("click", () => openPrs(sample(randomCandidates(), RANDOM_COUNT)));
 
 // Clear only unchecks; the names stay pinned so they're easy to re-pick
 els.clear.addEventListener("click", async () => {

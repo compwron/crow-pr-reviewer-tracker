@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Crow PR Reviewer Tracker",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Pick GitHub users from your org and open a search of their open PRs.",
   "permissions": ["storage", "alarms"],
   "host_permissions": ["https://api.github.com/*", "https://github.com/*"],

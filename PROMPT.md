@@ -13,6 +13,7 @@ Build a Firefox extension called "Crow PR Reviewer Tracker", Manifest V3, in pla
 - A toggle in the popup includes or hides draft PRs. A second toggle limits results to the org's repos.
 - A filter box narrows the list. Typing a valid GitHub username and pressing Enter adds that person, even if they aren't in the org list.
 - Checked people go at the top of the list. Unchecking someone, or clicking Clear, leaves them at the top, unchecked. An × on an unchecked top row removes it. People at the top who are no longer in the org get a small "not in org list" tag. Every row has a ↗ button that opens the search for just that person, using the current toggles.
+- A **random(3)** button next to Open PRs opens the search for 3 random org members who aren't checked. It doesn't change the picks. It is disabled when nobody is left to pick.
 
 **Search URL**
 

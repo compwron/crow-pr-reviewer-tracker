@@ -9,6 +9,7 @@ terms, so two or more people would match nothing.
 - The org member list is cached and refreshed once a day. It is checked hourly, so a sleeping laptop catches up on wake.
 - Your picks and toggles are saved in the browser profile. Unchecked picks stay at the top. Click × to drop one.
 - Click ↗ on any row to open just that person's PRs, with the same toggles.
+- Click **random(3)** to open PRs from 3 random people you haven't checked.
 - On a bad network, requests time out after 15s and retry with backoff. Failed daily refreshes retry every 5 min, then 10, up to 6h. The old list stays usable the whole time.
 - You can type a username and press Enter to add someone who isn't in the list.
 

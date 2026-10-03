@@ -1,6 +1,6 @@
 {
   "name": "crow-pr-reviewer-tracker",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Firefox add-on: pick people from your GitHub org and open a search of their open PRs.",
   "license": "MIT",

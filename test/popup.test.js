@@ -218,6 +218,59 @@ describe("opening PRs", () => {
   });
 });
 
+describe("random(3)", () => {
+  const authorsOpened = () =>
+    searchTerms(openedUrl())
+      .filter((t) => t.startsWith("author:"))
+      .map((t) => t.slice("author:".length));
+
+  context("with more than 3 people unchecked", () => {
+    beforeEach(() =>
+      openPopup({ members: ["alice", "bob", "carol", "dave", "erin", "frank"], selected: ["bob"], pinned: ["bob"] }),
+    );
+
+    it("opens PRs for 3 different people who aren't checked", async () => {
+      await click($("#random"));
+
+      const authors = authorsOpened();
+      expect(authors).toHaveLength(3);
+      expect(new Set(authors).size).toBe(3);
+      expect(authors).not.toContain("bob");
+      expect(page.close).toHaveBeenCalled();
+    });
+
+    it("leaves the picks alone", async () => {
+      await click($("#random"));
+      expect(browser.store).toMatchObject({ selected: ["bob"], pinned: ["bob"] });
+    });
+  });
+
+  context("with fewer than 3 people unchecked", () => {
+    beforeEach(() => openPopup({ selected: ["alice", "bob"], pinned: ["alice", "bob"] }));
+
+    it("opens PRs for everyone left", async () => {
+      await click($("#random"));
+      expect(authorsOpened().sort()).toEqual(["carol", "dave"]);
+    });
+  });
+
+  context("with everyone checked", () => {
+    beforeEach(() => openPopup({ selected: ["alice", "bob", "carol", "dave"] }));
+
+    it("is disabled", () => {
+      expect($("#random").disabled).toBe(true);
+    });
+  });
+
+  context("with no people cached", () => {
+    beforeEach(() => openPopup({ members: [] }));
+
+    it("is disabled", () => {
+      expect($("#random").disabled).toBe(true);
+    });
+  });
+});
+
 describe("the status line", () => {
   it("shows the count and age", async () => {
     await openPopup();
